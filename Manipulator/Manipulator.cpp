@@ -1,9 +1,10 @@
 #include "Manipulator.h"
-#include "Man"
 Manipulator::Manipulator()
 {
 	intakeRoller = new Talon(1, INTAKE_ROLLER_CHANNEL);
 	//intakeSwitch = new DigitalInput(1, INTAKE_SWITCH_CHANNEL);
+	arm = new ManipArm();
+	camera = new ManipCamera();
 	
 	step = 0;
 }

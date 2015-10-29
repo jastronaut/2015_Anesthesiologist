@@ -1,6 +1,9 @@
 #ifndef MANIPULATOR_H_
 #define MANIPULATOR_H_
 
+#include "ManipArm.h"
+#include "ManipCamera.h"
+
 class Manipulator
 {
 public:
@@ -18,6 +21,9 @@ public:
 
 private:
 	DoubleSolenoid *intakeArm;
+
+	ManipArm* arm;
+	ManipCamera* camera; 
 };
 
 #endif
