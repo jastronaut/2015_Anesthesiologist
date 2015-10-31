@@ -1,4 +1,5 @@
 #include "Manipulator.h"
+
 Manipulator::Manipulator()
 {
 	intakeRoller = new Talon(1, INTAKE_ROLLER_CHANNEL);
