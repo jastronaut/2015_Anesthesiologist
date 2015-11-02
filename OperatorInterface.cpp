@@ -2,24 +2,7 @@
 
 AnesthesiologistOperatorInterface::AnesthesiologistOperatorInterface()
 {
-	joyDrive = new Joystick(1);
-	joyManip = new Joystick(2);
-	dsSimple = DriverStation::GetInstance();
-	ds = &dsSimple->GetEnhancedIO();
-	dsLCD = DriverStationLCD::GetInstance();	
-	dashboard->init();
-}
 
-
-AnesthesiologistOperatorInterface::~AnesthesiologistOperatorInterface()
-{
-	delete dsLCD;
-	delete joyDrive;
-	delete joyManip;
-	
-	dsLCD = NULL;
-	joyDrive = NULL;
-	joyManip = NULL;	
 }
 
 Joystick *AnesthesiologistOperatorInterface::getDriveJoystick()
@@ -59,4 +42,27 @@ bool AnesthesiologistOperatorInterface::getManipJoystickButton(UINT8 button)
 float AnesthesiologistOperatorInterface::getBatteryVoltage()
 {
 	return DriverStation::GetInstance()->GetBatteryVoltage();
+}
+
+OperatorInterface::OperatorInterface()
+{
+	joyDrive = new Joystick(1);
+	joyManip = new Joystick(2);
+
+	dashboard->init(); 
+}
+
+OperatorInterface::~OperatorInterface()
+{
+	delete joyDrive;
+	delete joyManip;
+	
+	joyDrive = NULL;
+	joyManip = NULL;	
+	dashboard = NULL;
+}
+
+SmartDashboard* OperatorInterface::getDashboard()
+{
+	return dashboard;
 }

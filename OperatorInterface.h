@@ -27,14 +27,12 @@ public:
 	
 	float getBatteryVoltage();
 	
-	DriverStation *getDriverStation();
-	DriverStationLCD *dsLCD;
-	SmartDashboard *dashboard;
+	SmartDashboard* getDashboard();
 	
 private:
 	Joystick *joyDrive;
 	Joystick *joyManip;
-	DriverStationEnhancedIO *ds;
-	DriverStation *dsSimple;
+
+	SmartDashboard* dashboard;
 };
 #endif
