@@ -39,22 +39,16 @@ AnesthesiologistDrive::~AnesthesiologistDrive()
 void AnesthesiologistDrive::shift(bool highButton, bool lowButton)
 {	
 	if(lowButton)
-	{
 		shifter->Set(DoubleSolenoid::kForward);
-	}
 	else if(highButton)
-	{
 		shifter->Set(DoubleSolenoid::kReverse);
-	}
 }
 
 bool AnesthesiologistDrive::getShiftState()
 {
-	//if in low gear
+	//iflow gear
 	if(shifter->Get() == DoubleSolenoid::kForward)
-	{
 		return true;
-	}
 	return false;
 }
 
