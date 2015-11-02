@@ -9,7 +9,7 @@ public:
 	AnesthesiologistDrive(AnesthesiologistOperatorInterface *opInt = NULL);
 	~AnesthesiologistDrive();
 	
-	void shift(UINT8 highButton, UINT8 lowButton);
+	void shift(bool highButton, bool lowButton);
 	bool getShiftState();
 	
 	void drive();
@@ -28,12 +28,12 @@ public:
 	Timer *timer;
 	
 private:
-	Talon *frontLeftMotor;
-	Talon *rearLeftMotor;
-	Talon *frontRightMotor;
-	Talon *rearRightMotor;
+	CANTalon *frontLeftMotor;
+	CANTalon *rearLeftMotor;
+	CANTalon *frontRightMotor;
+	CANTalon *rearRightMotor;
 	
-	AnesthesiologistOperatorInterface *oi;
+	//AnesthesiologistOperatorInterface *oi;
 	
 	double linearVelocity; 
 	double turnSpeed;

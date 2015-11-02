@@ -2,7 +2,7 @@
 
 AnesthesiologistDrive::AnesthesiologistDrive(AnesthesiologistOperatorInterface *opInt)
 {
-	if(opInt) oi = opInt;
+	//if(opInt) oi = opInt;
 	
 	linearVelocity = 0;
 	turnSpeed = 0;
@@ -10,10 +10,10 @@ AnesthesiologistDrive::AnesthesiologistDrive(AnesthesiologistOperatorInterface *
 	shifter = new DoubleSolenoid(PNEUMATICS_24V_SLOT, SHIFTER_SOLENOID_CHANNEL_A, SHIFTER_SOLENOID_CHANNEL_B);   
 	shifter->Set(DoubleSolenoid::kReverse);
 	
-	frontLeftMotor = new Talon(1, DRIVE_FRONT_LEFT_MOTOR_CHANNEL);   
-	rearLeftMotor = new Talon(1, DRIVE_REAR_LEFT_MOTOR_CHANNEL);   
-	frontRightMotor = new Talon(1, DRIVE_FRONT_RIGHT_MOTOR_CHANNEL); 
-	rearRightMotor = new Talon(1, DRIVE_REAR_RIGHT_MOTOR_CHANNEL);
+	frontLeftMotor = new Talon(FRONT_LEFT_MOTOR_CHANNEL);   
+	rearLeftMotor = new Talon(REAR_LEFT_MOTOR_CHANNEL);   
+	frontRightMotor = new Talon(FORNT_RIGHT_MOTOR_CHANNEL); 
+	rearRightMotor = new Talon(REAR_RIGHT_MOTOR_CHANNEL);
 		
 	timer = new Timer();
 	timer->Start();
@@ -36,7 +36,7 @@ AnesthesiologistDrive::~AnesthesiologistDrive()
 	timer = NULL;
 }
 
-void AnesthesiologistDrive::shift(UINT8 highButton, UINT8 lowButton)
+void AnesthesiologistDrive::shift(bool highButton, bool lowButton)
 {	
 	if(lowButton)
 	{
@@ -61,17 +61,11 @@ bool AnesthesiologistDrive::getShiftState()
 void AnesthesiologistDrive::setLinVelocity(double linVal)
 {
 	if(linVal > DEADZONE)
-	{
 		linearVelocity = linVal;
-	}
 	else if(linVal < -DEADZONE)
-	{
 		linearVelocity = linVal;
-	}
 	else 
-	{
 		linearVelocity = 0; //NEUTRAL
-	}	
 }
 
 double AnesthesiologistDrive::getLinVelocity()
@@ -82,17 +76,11 @@ double AnesthesiologistDrive::getLinVelocity()
 void AnesthesiologistDrive::setTurnSpeed(double turn, bool turboButton)
 {
 	if((turn > DEADZONE && !turboButton) || (turn < -DEADZONE && !turboButton)) 
-	{
 		turnSpeed = turn * REDUCTION;
-	}
 	if(turn < DEADZONE && turn > -DEADZONE) 
-	{
 		turnSpeed = 0; //NEUTRAL
-	}
 	if((turn > DEADZONE && turboButton) || (turn < -DEADZONE && turboButton)) 
-	{
 		turnSpeed = turn;
-	}
 }
 
 double AnesthesiologistDrive::getTurnSpeed()
@@ -116,7 +104,6 @@ void AnesthesiologistDrive::setRightMotors(double velocity)
 	frontRightMotor->Set(velocity, SYNC_STATE_OFF);
 	rearRightMotor->Set(velocity, SYNC_STATE_OFF);
 }
-
 
 void AnesthesiologistDrive::drive()
 {
