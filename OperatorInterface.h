@@ -10,12 +10,12 @@
 #include "SmartDashboard/Sendable.h"
 #include "SmartDashboard/SendableChooser.h"
 
-class AnesthesiologistOperatorInterface
+class OperatorInterface
 {
 	
 public:
-	AnesthesiologistOperatorInterface();	
-	~AnesthesiologistOperatorInterface();
+	OperatorInterface();	
+	~OperatorInterface();
 	
 	Joystick *getDriveJoystick();
 	bool getDriveJoystickButton(UINT8 button);

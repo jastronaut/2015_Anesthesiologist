@@ -1,21 +1,16 @@
 #include "OperatorInterface.h"
 
-AnesthesiologistOperatorInterface::AnesthesiologistOperatorInterface()
-{
-
-}
-
-Joystick *AnesthesiologistOperatorInterface::getDriveJoystick()
+Joystick *OperatorInterface::getDriveJoystick()
 {
     return joyDrive;
 }
 
-Joystick *AnesthesiologistOperatorInterface::getManipJoystick()
+Joystick *OperatorInterface::getManipJoystick()
 {
     return joyManip;
 }
 
-bool AnesthesiologistOperatorInterface::getDriveJoystickButton(UINT8 button)
+bool OperatorInterface::getDriveJoystickButton(UINT8 button)
 {
 	 if(joyDrive->GetRawButton(button))
 	 {
@@ -27,7 +22,7 @@ bool AnesthesiologistOperatorInterface::getDriveJoystickButton(UINT8 button)
 	 }
 }
 
-bool AnesthesiologistOperatorInterface::getManipJoystickButton(UINT8 button)
+bool OperatorInterface::getManipJoystickButton(UINT8 button)
 {
 	if( joyManip->GetRawButton(button) == 1)
 	{
@@ -39,7 +34,7 @@ bool AnesthesiologistOperatorInterface::getManipJoystickButton(UINT8 button)
 	}
 }
 
-float AnesthesiologistOperatorInterface::getBatteryVoltage()
+float OperatorInterface::getBatteryVoltage()
 {
 	return DriverStation::GetInstance()->GetBatteryVoltage();
 }
