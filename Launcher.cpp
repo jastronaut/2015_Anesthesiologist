@@ -1,6 +1,6 @@
-#include "AnesthesiologistLauncher.h"
+#include "Launcher.h"
 
-AnesthesiologistLauncher::AnesthesiologistLauncher(AnesthesiologistManipulator* manip)
+Launcher::Launcher(AnesthesiologistManipulator* manip)
 {
 	manipulator = manip;
 	launcherMotor = new Victor(1, LAUNCHER_MOTOR_CHANNEL);	
@@ -21,7 +21,7 @@ AnesthesiologistLauncher::AnesthesiologistLauncher(AnesthesiologistManipulator* 
 	currentTime = 0;
 }
 
-AnesthesiologistLauncher::~AnesthesiologistLauncher()
+Launcher::~Launcher()
 {
 	delete launcherMotor;
 	delete pulseSwitch;
@@ -32,7 +32,7 @@ AnesthesiologistLauncher::~AnesthesiologistLauncher()
 	timer = NULL;
 }
 
-void AnesthesiologistLauncher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB)
+void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB)
 {	
 	switch(launchState)	
 	{
@@ -145,7 +145,7 @@ void AnesthesiologistLauncher::launchBall(bool launchTrigger, bool safetySwitch,
 	}
 }
 
-void AnesthesiologistLauncher::autoFirstLaunch()
+void Launcher::autoFirstLaunch()
 {	
 	if(autonInit1)
 	{
@@ -164,7 +164,7 @@ void AnesthesiologistLauncher::autoFirstLaunch()
 	}
 }
 
-void AnesthesiologistLauncher::autoSecondLaunch()
+void Launcher::autoSecondLaunch()
 {	
 	if(autonInit2)
 	{
@@ -183,7 +183,7 @@ void AnesthesiologistLauncher::autoSecondLaunch()
 	}
 }
 
-void AnesthesiologistLauncher::autoReset()
+void Launcher::autoReset()
 {
 	if(init)
 	{

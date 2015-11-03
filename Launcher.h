@@ -1,13 +1,13 @@
-#ifndef ANESTHESIOLOGIST_LAUNCHER_H
-#define ANESTHESIOLOGIST_LAUNCHER_H
+#ifndef LAUNCHER_H_
+#define LAUNCHER_H_
 #include "AnesthesiologistManipulator.h"
 #include "AnesthesiologistMacros.h"
 	
-class AnesthesiologistLauncher
+class Launcher
 {
 public:
-	AnesthesiologistLauncher(AnesthesiologistManipulator* manip);
-	~AnesthesiologistLauncher();
+	Launcher(AnesthesiologistManipulator* manip);
+	~Launcher();
 	
 	void launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB);
 	
