@@ -1,5 +1,23 @@
 #include "OperatorInterface.h"
 
+OperatorInterface::OperatorInterface()
+{
+	joyDrive = new Joystick(1);
+	joyManip = new Joystick(2);
+
+	dashboard->init(); 
+}
+
+OperatorInterface::~OperatorInterface()
+{
+	delete joyDrive;
+	delete joyManip;
+	
+	joyDrive = NULL;
+	joyManip = NULL;	
+	dashboard = NULL;
+}
+
 Joystick *OperatorInterface::getDriveJoystick()
 {
     return joyDrive;
@@ -37,24 +55,6 @@ bool OperatorInterface::getManipJoystickButton(UINT8 button)
 float OperatorInterface::getBatteryVoltage()
 {
 	return DriverStation::GetInstance()->GetBatteryVoltage();
-}
-
-OperatorInterface::OperatorInterface()
-{
-	joyDrive = new Joystick(1);
-	joyManip = new Joystick(2);
-
-	dashboard->init(); 
-}
-
-OperatorInterface::~OperatorInterface()
-{
-	delete joyDrive;
-	delete joyManip;
-	
-	joyDrive = NULL;
-	joyManip = NULL;	
-	dashboard = NULL;
 }
 
 SmartDashboard* OperatorInterface::getDashboard()
