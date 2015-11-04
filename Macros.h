@@ -29,6 +29,14 @@ Manip Joystick:
 	throttle -  roller speed
 */
 
+// buttons
+//http://first.wpi.edu/FRC/roborio/stable/docs/cpp/classJoystick.html
+#define INTAKE_BUTTON							(0)
+#define OUTTAKE_BUTTON							(3)
+#define UP_INTAKE_BUTTON						(4)
+#define DOWN_INTAKE_BUTTON						(3)
+#define COMPRESSOR_BUTTON						(1)
+	
 	//Slots
 #define PNEUMATICS_24V_SLOT						(1)
 
