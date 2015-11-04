@@ -3,12 +3,7 @@
 
 
 #include "WPILib.h"
-#include "AnesthesiologistMacros.h"
-
-#include "SmartDashboard/SmartDashboard.h"
-#include "SmartDashboard/NamedSendable.h"
-#include "SmartDashboard/Sendable.h"
-#include "SmartDashboard/SendableChooser.h"
+#include "Macros.h"
 
 class OperatorInterface
 {
@@ -16,16 +11,6 @@ class OperatorInterface
 public:
 	OperatorInterface();	
 	~OperatorInterface();
-	
-	Joystick *getDriveJoystick();
-	bool getDriveJoystickButton(UINT8 button);
-	bool getDriveJoystickButtonReleased(UINT8 button);
-
-	Joystick *getManipJoystick();		
-	bool getManipJoystickButton(UINT8 button);		
-	bool getManipJoystickButtonReleased(UINT8 button);
-	
-	float getBatteryVoltage();
 	
 	SmartDashboard* getDashboard();
 	

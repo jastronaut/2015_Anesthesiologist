@@ -18,45 +18,6 @@ OperatorInterface::~OperatorInterface()
 	dashboard = NULL;
 }
 
-Joystick *OperatorInterface::getDriveJoystick()
-{
-    return joyDrive;
-}
-
-Joystick *OperatorInterface::getManipJoystick()
-{
-    return joyManip;
-}
-
-bool OperatorInterface::getDriveJoystickButton(UINT8 button)
-{
-	 if(joyDrive->GetRawButton(button))
-	 {
-		 return true;
-	 }
-	 else
-	 {
-		 return false;
-	 }
-}
-
-bool OperatorInterface::getManipJoystickButton(UINT8 button)
-{
-	if( joyManip->GetRawButton(button) == 1)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-float OperatorInterface::getBatteryVoltage()
-{
-	return DriverStation::GetInstance()->GetBatteryVoltage();
-}
-
 SmartDashboard* OperatorInterface::getDashboard()
 {
 	return dashboard;
