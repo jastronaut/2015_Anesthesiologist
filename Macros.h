@@ -36,7 +36,8 @@ Manip Joystick:
 #define UP_INTAKE_BUTTON						(4)
 #define DOWN_INTAKE_BUTTON						(3)
 #define COMPRESSOR_BUTTON						(1)
-	
+#define SHIFT_GEARS_BUTTON						(2)
+
 	//Slots
 #define PNEUMATICS_24V_SLOT						(1)
 
