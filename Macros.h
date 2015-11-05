@@ -1,40 +1,26 @@
 #ifndef ANESTHESIOLOGIST_MACROS_H
 #define ANESTHESIOLOGIST_MACROS_H
 
-/*Joystick button mapping (for reference)
-Drive Joystick:
-	1 - shoot ball
-	2 - safety switch
-	3 - turbo turning
-	4 - 
-	5 - 
-	6 - start compressor
-	7 - stop compressor
-	8 - shift up
-	9 - shift down
-	10 - kill switch A  
-	11 - kill switch B
-Manip Joystick:
-	1 - 
-	2 - intake 
-	3 - outtake
-	4 - 
-	5 - 
-	6 - set arm to intake position
-	7 - set arm to stored position 
-	8 - 
-	9 - 
-	10 - set camera position to back  
-	11 - set camera position to forward 
-	throttle -  roller speed
-*/
+/*
+	XBOX CONTROLS
+	
+	forward/backward			left joystick 
+	turn 						right joystick
+	intake button 				A
+	outtake button 				Y
+	up intake 					TL
+	down intake 				TR
+	compressor 					B
+	shift gears 				BR
 
+*/
+	
 // buttons
 //http://first.wpi.edu/FRC/roborio/stable/docs/cpp/classJoystick.html
 #define INTAKE_BUTTON							(0)
 #define OUTTAKE_BUTTON							(3)
 #define UP_INTAKE_BUTTON						(4)
-#define DOWN_INTAKE_BUTTON						(3)
+#define DOWN_INTAKE_BUTTON						(5)
 #define COMPRESSOR_BUTTON						(1)
 #define SHIFT_GEARS_BUTTON						(2)
 
