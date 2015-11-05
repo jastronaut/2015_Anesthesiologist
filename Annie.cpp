@@ -45,8 +45,6 @@ private:
 	{
 		if(!isWait)
 		{
-			//drive->setLinVelocity(oi->joyDrive()->GetY());
-			drive->setTurnSpeed(oi->joyDrive()->GetX(), oi->joyDrive->GetRawButton(PLACE_HOLDER));
 			drive->drive();
 			drive->shift(oi->joyDrive->GetRawButton(8), oi->joyDrive->GetRawButton(9));
 			
