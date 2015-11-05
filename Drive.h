@@ -33,7 +33,7 @@ private:
 	CANTalon *frontRightMotor;
 	CANTalon *rearRightMotor;
 	
-	//AnesthesiologistOperatorInterface *oi;
+	AnesthesiologistOperatorInterface *oi;
 	
 	double linearVelocity; 
 	double turnSpeed;
