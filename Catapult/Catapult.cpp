@@ -1,10 +1,11 @@
-#include "Launcher.h"
+#include "Catapult.h"
 
-Launcher::Launcher(AnesthesiologistManipulator* manip)
+Catapult::Catapult()
 {
-	manipulator = manip;
-	launcherMotor = new Victor(1, LAUNCHER_MOTOR_CHANNEL);	
+	armManip = new ManipArm();
+	catapultMotor = new CANTalon(1, Catapult_MOTOR_CHANNEL);	
 	pulseSwitch = new DigitalInput(1, PULSE_SWITCH_CHANNEL);
+	// breakout board  ,talonlllllll
 	
 	lastPulse = false;
 	launchState = STATE_HOLD;
@@ -21,23 +22,23 @@ Launcher::Launcher(AnesthesiologistManipulator* manip)
 	currentTime = 0;
 }
 
-Launcher::~Launcher()
+Catapult::~Catapult()
 {
-	delete launcherMotor;
+	delete CatapultMotor;
 	delete pulseSwitch;
 	delete timer;
 	
-	launcherMotor = NULL;
+	CatapultMotor = NULL;
 	pulseSwitch = NULL;
 	timer = NULL;
 }
 
-void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB)
+void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB)
 {	
 	switch(launchState)	
 	{
 	case STATE_OFF:	
-		launcherMotor->Set(0, SYNC_STATE_OFF);
+		CatapultMotor->Set(0);
 		if(lastPressed && !killSwitchA && !killSwitchB)
 		{
 			lastPressed = false;
@@ -56,7 +57,7 @@ void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		}
 		
 		init = true;
-		launcherMotor->Set(0, SYNC_STATE_OFF);
+		CatapultMotor->Set(0);
 		
 		if(lastPressed && !launchTrigger && !safetySwitch)
 		{
@@ -83,11 +84,11 @@ void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		
 		if(currentTime < RESET_TIME + initTime)
 		{
-			launcherMotor->Set(-1, SYNC_STATE_OFF);
+			CatapultMotor->Set(-1);
 		}
 		else
 		{
-			launcherMotor->Set(SLOW_SPEED, SYNC_STATE_OFF);
+			CatapultMotor->Set(SLOW_SPEED);
 		}
 		
 		if(pulseSwitch->Get() == 1)
@@ -106,7 +107,7 @@ void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 			launchState = STATE_OFF;
 		}
 		init = true;
-		launcherMotor->Set(0, SYNC_STATE_OFF);
+		CatapultMotor->Set(0);
 		
 		if(lastPressed && !launchTrigger && !safetySwitch)
 		{
@@ -133,7 +134,7 @@ void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		
 		if(currentTime < LAUNCH_TIME + initTime)
 		{
-			launcherMotor->Set(-1, SYNC_STATE_OFF);
+			CatapultMotor->Set(-1);
 		}
 		else
 		{
@@ -145,7 +146,7 @@ void Launcher::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 	}
 }
 
-void Launcher::autoFirstLaunch()
+void Catapult::autoFirstLaunch()
 {	
 	if(autonInit1)
 	{
@@ -156,15 +157,15 @@ void Launcher::autoFirstLaunch()
 	
 	if(currentTime < LAUNCH_TIME + initTime)
 	{
-		launcherMotor->Set(-1, SYNC_STATE_OFF);
+		CatapultMotor->Set(-1);
 	}
 	else
 	{
-		launcherMotor->Set(0);
+		CatapultMotor->Set(0);
 	}
 }
 
-void Launcher::autoSecondLaunch()
+void Catapult::autoSecondLaunch()
 {	
 	if(autonInit2)
 	{
@@ -175,15 +176,15 @@ void Launcher::autoSecondLaunch()
 	
 	if(currentTime < LAUNCH_TIME + initTime)
 	{
-		launcherMotor->Set(-1, SYNC_STATE_OFF);
+		CatapultMotor->Set(-1);
 	}
 	else
 	{
-		launcherMotor->Set(0);
+		CatapultMotor->Set(0);
 	}
 }
 
-void Launcher::autoReset()
+void Catapult::autoReset()
 {
 	if(init)
 	{
@@ -194,7 +195,7 @@ void Launcher::autoReset()
 	
 	if(currentTime < RESET_TIME + initTime)
 	{
-		launcherMotor->Set(-1, SYNC_STATE_OFF);
+		CatapultMotor->Set(-1);
 	}
 	
 	if(pulseSwitch->Get() == 1)
@@ -203,6 +204,6 @@ void Launcher::autoReset()
 	}
 	if(pulseSwitch->Get() == 0 && lastPulse)
 	{
-		launcherMotor->Set(0, SYNC_STATE_OFF);
+		CatapultMotor->Set(0);
 	}
 }

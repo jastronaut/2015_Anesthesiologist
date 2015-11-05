@@ -1,13 +1,13 @@
-#ifndef LAUNCHER_H_
-#define LAUNCHER_H_
-#include "../Manipulator/Manipulator.h"
+#ifndef CATAPULT_H_
+#define CATAPULT_H_
+#include "../Manipulator/ManipArm.h"
 #include "../Macros.h"
 	
-class Launcher
+class Catapult
 {
 public:
-	Launcher(AnesthesiologistManipulator* manip);
-	~Launcher();
+	Catapult();
+	~Catapult();
 	
 	void launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB);
 	
@@ -15,14 +15,14 @@ public:
 	void autoSecondLaunch();
 	void autoReset();
 		
-	Victor *launcherMotor;
+	CANTalon *catapultMotor;
 	int launchState;
 	int autoLaunchState;
 	Timer *timer;
 	
 private:
 	DigitalInput *pulseSwitch;
-	AnesthesiologistManipulator *manipulator;
+	ManipArm* armManip;
 	
 	double initTime;
 	double currentTime;
