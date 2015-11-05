@@ -1,7 +1,7 @@
 #ifndef ANESTHESIOLOGIST_DRIVE_H
 #define ANESTHESIOLOGIST_DRIVE_H
-#include "AnesthesiologistMacros.h"
-#include "AnesthesiologistOperatorInterface.h"
+#include "../Macros.h"
+#include "../Operator\ Interface/OperatorInterface.h"
 
 class AnesthesiologistDrive
 {

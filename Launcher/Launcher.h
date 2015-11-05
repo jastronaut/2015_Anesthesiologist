@@ -1,7 +1,7 @@
 #ifndef LAUNCHER_H_
 #define LAUNCHER_H_
-#include "AnesthesiologistManipulator.h"
-#include "AnesthesiologistMacros.h"
+#include "../Manipulator/Manipulator.h"
+#include "../Macros.h"
 	
 class Launcher
 {

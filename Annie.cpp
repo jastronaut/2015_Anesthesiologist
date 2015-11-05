@@ -1,8 +1,8 @@
 #include "WPILib.h"
-#include "Drive.h"
+#include "Drive/Drive.h"
 #include "Manipulator/Manipulator.h"
-#include "Launcher.h"
-#include "OperatorInterface.h"
+#include "Launcher/Launcher.h"
+#include "Operator\ Interface/OperatorInterface.h"
 #include "Macros.h"
 
 class Annie: public IterativeRobot
