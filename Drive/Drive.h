@@ -1,5 +1,5 @@
-#ifndef ANESTHESIOLOGIST_DRIVE_H
-#define ANESTHESIOLOGIST_DRIVE_H
+#ifndef DRIVE_H
+#define DRIVE_H
 #include "../Macros.h"
 #include "../Operator\ Interface/OperatorInterface.h"
 
