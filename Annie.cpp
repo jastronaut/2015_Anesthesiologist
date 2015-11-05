@@ -45,11 +45,12 @@ private:
 	{
 		if(!isWait)
 		{
-			drive->setLinVelocity(oi->joyDrive()->GetY());
-			drive->setTurnSpeed(oi->joyDrive()->GetX(), oi->joyDrive->GetRawButton(3));
+			//drive->setLinVelocity(oi->joyDrive()->GetY());
+			drive->setTurnSpeed(oi->joyDrive()->GetX(), oi->joyDrive->GetRawButton(PLACE_HOLDER));
 			drive->drive();
-		
 			drive->shift(oi->joyDrive->GetRawButton(8), oi->joyDrive->GetRawButton(9));
+			
+
 			manipulator->moveArm(oi->joyManip->GetRawButton(6), oi->joyManip->GetRawButton(7));
 			manipulator->intakeBall(oi->joyManip->GetRawButton(3), oi->joyManip->GetRawButton(2), (oi->getManipJoystick()->GetThrottle()+1)/2);
 			launcher->launchBall(oi->joyDrive->GetRawButton(1), oi->joyDrive->GetRawButton(2), oi->joyDrive->GetRawButton(10), oi->joyDrive->GetRawButton(11));
