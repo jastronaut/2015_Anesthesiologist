@@ -12,21 +12,18 @@ public:
 	void shift(bool highButton, bool lowButton);
 	bool getShiftState();
 	
-	void drive();
-	void setLinVelocity(double linVal);
-	double getLinVelocity();
+	float setLinVelocity(float linVal);
 	
-	void setTurnSpeed(double turn, bool turboButton);		
-	double getTurnSpeed();	
-	
-	double reduceTurn(double reduceBy);	
+	float setTurnSpeed(float turn, bool turboButton);	
 	
 	void setLeftMotors(double velocity);
 	void setRightMotors(double velocity);
 
+	void drive();
+
 	DoubleSolenoid *shifter;
 	Timer *timer;
-	
+
 private:
 	CANTalon *frontLeftMotor;
 	CANTalon *rearLeftMotor;
@@ -35,9 +32,9 @@ private:
 	
 	AnesthesiologistOperatorInterface *oi;
 	
-	double linearVelocity; 
-	double turnSpeed;
-	double leftCmd;
-	double rightCmd;	
+	float linearVelocity; 
+	float turnSpeed;
+	float leftCmd;
+	float rightCmd;	
 };
 #endif
