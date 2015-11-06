@@ -15,13 +15,12 @@ public:
 	void autoSecondLaunch();
 	void autoReset();
 		
-	CANTalon *catapultMotor;
+	CANTalon *choochooTalon;
 	int launchState;
 	int autoLaunchState;
 	Timer *timer;
 	
 private:
-	DigitalInput *pulseSwitch;
 	ManipArm* armManip;
 	
 	double initTime;

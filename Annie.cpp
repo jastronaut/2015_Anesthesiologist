@@ -1,7 +1,7 @@
 #include "WPILib.h"
 #include "Drive/Drive.h"
 #include "Manipulator/Manipulator.h"
-#include "Launcher/Launcher.h"
+#include "Catapult/Catapult.h"
 #include "Operator\ Interface/OperatorInterface.h"
 #include "Macros.h"
 
@@ -11,7 +11,7 @@ private:
 	//LiveWindow *lw; do we need this?
 	Drive *drive;
 	Manipulator *manip;
-	Launcher *launcher;
+	Catapult *catapult;
 	OperatorInterface *oi;
 	Compressor *comp599;
 	Timer *timer;
@@ -21,7 +21,7 @@ private:
 		//lw = LiveWindow::GetInstance(); wat
 		drive = new Drive();
 		manip = new Manipulator();
-		launcher = new Launcher();
+		catapult = new Catapult();
 		oi = new OperatorInterface();
 
 	}
@@ -51,7 +51,7 @@ private:
 
 			manipulator->moveArm(oi->joyManip->GetRawButton(6), oi->joyManip->GetRawButton(7));
 			manipulator->intakeBall(oi->joyManip->GetRawButton(3), oi->joyManip->GetRawButton(2), (oi->getManipJoystick()->GetThrottle()+1)/2);
-			launcher->launchBall(oi->joyDrive->GetRawButton(1), oi->joyDrive->GetRawButton(2), oi->joyDrive->GetRawButton(10), oi->joyDrive->GetRawButton(11));
+			catapult->launchBall(oi->joyDrive->GetRawButton(1), oi->joyDrive->GetRawButton(2), oi->joyDrive->GetRawButton(10), oi->joyDrive->GetRawButton(11));
 			toggleCompressor(oi->joyDrive->GetRawButton(6), oi->joyDrive->GetRawButton(7));
 		}
 		

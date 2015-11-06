@@ -3,8 +3,7 @@
 Catapult::Catapult()
 {
 	armManip = new ManipArm();
-	catapultMotor = new CANTalon(1, Catapult_MOTOR_CHANNEL);	
-	pulseSwitch = new DigitalInput(1, PULSE_SWITCH_CHANNEL);
+	choochooTalon = new CANTalon(Catapult_MOTOR_CHANNEL);	
 	// breakout board  ,talonlllllll
 	
 	lastPulse = false;
@@ -24,12 +23,10 @@ Catapult::Catapult()
 
 Catapult::~Catapult()
 {
-	delete CatapultMotor;
-	delete pulseSwitch;
+	delete choochooTalon;
 	delete timer;
 	
-	CatapultMotor = NULL;
-	pulseSwitch = NULL;
+	choochooTalon = NULL;
 	timer = NULL;
 }
 
@@ -38,7 +35,7 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 	switch(launchState)	
 	{
 	case STATE_OFF:	
-		CatapultMotor->Set(0);
+		choochooMotor->Set(0);
 		if(lastPressed && !killSwitchA && !killSwitchB)
 		{
 			lastPressed = false;
@@ -57,7 +54,7 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		}
 		
 		init = true;
-		CatapultMotor->Set(0);
+		choochooMotor->Set(0);
 		
 		if(lastPressed && !launchTrigger && !safetySwitch)
 		{
@@ -84,11 +81,11 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		
 		if(currentTime < RESET_TIME + initTime)
 		{
-			CatapultMotor->Set(-1);
+			choochooMotor->Set(-1);
 		}
 		else
 		{
-			CatapultMotor->Set(SLOW_SPEED);
+			choochooMotor->Set(SLOW_SPEED);
 		}
 		
 		if(pulseSwitch->Get() == 1)
@@ -107,7 +104,7 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 			launchState = STATE_OFF;
 		}
 		init = true;
-		CatapultMotor->Set(0);
+		choochooMotor->Set(0);
 		
 		if(lastPressed && !launchTrigger && !safetySwitch)
 		{
@@ -134,7 +131,7 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		
 		if(currentTime < LAUNCH_TIME + initTime)
 		{
-			CatapultMotor->Set(-1);
+			choochooMotor->Set(-1);
 		}
 		else
 		{
@@ -157,11 +154,11 @@ void Catapult::autoFirstLaunch()
 	
 	if(currentTime < LAUNCH_TIME + initTime)
 	{
-		CatapultMotor->Set(-1);
+		choochooMotor->Set(-1);
 	}
 	else
 	{
-		CatapultMotor->Set(0);
+		choochooMotor->Set(0);
 	}
 }
 
@@ -176,11 +173,11 @@ void Catapult::autoSecondLaunch()
 	
 	if(currentTime < LAUNCH_TIME + initTime)
 	{
-		CatapultMotor->Set(-1);
+		choochooMotor->Set(-1);
 	}
 	else
 	{
-		CatapultMotor->Set(0);
+		choochooMotor->Set(0);
 	}
 }
 
@@ -195,7 +192,7 @@ void Catapult::autoReset()
 	
 	if(currentTime < RESET_TIME + initTime)
 	{
-		CatapultMotor->Set(-1);
+		choochooMotor->Set(-1);
 	}
 	
 	if(pulseSwitch->Get() == 1)
@@ -204,6 +201,6 @@ void Catapult::autoReset()
 	}
 	if(pulseSwitch->Get() == 0 && lastPulse)
 	{
-		CatapultMotor->Set(0);
+		choochooMotor->Set(0);
 	}
 }
