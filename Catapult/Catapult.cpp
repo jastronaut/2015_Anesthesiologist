@@ -19,6 +19,12 @@ Catapult::Catapult()
 	timer->Start();
 	initTime = 0;
 	currentTime = 0;
+
+	safety = 0;
+	fire = 0;
+
+	killSwitchA = true;
+	killSwitchB = true;
 }
 
 Catapult::~Catapult()
@@ -30,8 +36,13 @@ Catapult::~Catapult()
 	timer = NULL;
 }
 
-void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitchA, bool killSwitchB)
+void Catapult::launchBall()
 {	
+	fire = oi->joyDrive->GetAxis(FIRE_BUTTON);
+	safety = oi->joyDrive->GetAxis(SAFETY_BUTTON);
+	killSwitchA = oi->joyDrive->GetRawButton(KILL_SWITCH_A);
+	killSwitchB = oi->joyDrive->GetRawButton(KILL_SWITCH_B);
+
 	switch(launchState)	
 	{
 	case STATE_OFF:	
@@ -56,11 +67,11 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		init = true;
 		choochooMotor->Set(0);
 		
-		if(lastPressed && !launchTrigger && !safetySwitch)
+		if(lastPressed && (fire == 0) && (safety == 0))
 		{
 			lastPressed = false;
 		}
-		if(launchTrigger && safetySwitch && !lastPressed)
+		if((fire == 1) && (safety == 1) && !lastPressed)
 		{
 			lastPressed = true;
 			launchState = STATE_RESET;
@@ -106,11 +117,11 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		init = true;
 		choochooMotor->Set(0);
 		
-		if(lastPressed && !launchTrigger && !safetySwitch)
+		if(lastPressed && (fire == 0) && (safety == 0))
 		{
 			lastPressed = false;
 		}
-		if(launchTrigger && safetySwitch && !lastPressed && manipulator->getArmPosition() == true)//true?
+		if((fire == 1) && (safety == 1) && !lastPressed && manipulator->getArmPosition() == true)//true?
 		{
 			lastPressed = true;
 			launchState = STATE_FIRE;
@@ -120,7 +131,7 @@ void Catapult::launchBall(bool launchTrigger, bool safetySwitch, bool killSwitch
 		if(killSwitchA && killSwitchB) 
 		{
 			launchState = STATE_OFF;
-		}
+		}	
 		
 		if(init)
 		{

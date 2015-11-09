@@ -51,7 +51,7 @@ private:
 
 			manipulator->moveArm(oi->joyManip->GetRawButton(6), oi->joyManip->GetRawButton(7));
 			manipulator->intakeBall(oi->joyManip->GetRawButton(3), oi->joyManip->GetRawButton(2), (oi->getManipJoystick()->GetThrottle()+1)/2);
-			catapult->launchBall(oi->joyDrive->GetRawButton(1), oi->joyDrive->GetRawButton(2), oi->joyDrive->GetRawButton(10), oi->joyDrive->GetRawButton(11));
+			catapult->launchBall();
 			toggleCompressor(oi->joyDrive->GetRawButton(6), oi->joyDrive->GetRawButton(7));
 		}
 		

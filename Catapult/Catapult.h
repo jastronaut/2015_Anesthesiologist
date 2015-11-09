@@ -1,7 +1,8 @@
 #ifndef CATAPULT_H_
 #define CATAPULT_H_
-#include "../Manipulator/ManipArm.h"
 #include "../Macros.h"
+#include "../Operator\ Interface/OperatorInterface.h"
+#include "../Manipulator/ManipArm.h"
 	
 class Catapult
 {
@@ -22,6 +23,7 @@ public:
 	
 private:
 	ManipArm* armManip;
+	OperatorInterface* oi;
 	
 	double initTime;
 	double currentTime;
@@ -30,6 +32,10 @@ private:
 	bool autonInit2;
 	bool lastPulse;
 	bool lastPressed;
+	float fire;
+	float safety;
+	bool killSwitchB;
+	bool killSwitchA;
 	
 };
 #endif
