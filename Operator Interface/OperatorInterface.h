@@ -14,9 +14,10 @@ public:
 	
 	SmartDashboard* getDashboard();
 	
-private:
 	Joystick *joyDrive;
 	Joystick *joyManip;
+	
+private:
 
 	SmartDashboard* dashboard;
 };
