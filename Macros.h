@@ -23,6 +23,10 @@
 #define DOWN_INTAKE_BUTTON						(5)
 #define COMPRESSOR_BUTTON						(1)
 #define SHIFT_GEARS_BUTTON						(2)
+#define FIRE_BUTTON								(2)
+#define SAFETY_BUTTON							(3)
+#define KILL_SWITCH_A							(6)
+#define KILL_SWITCH_B							(7)
 
 #define TURN_X_AXIS								(4)
 #define FORWARD_Y_AXIS							(1)
