@@ -45,8 +45,10 @@ private:
 	{
 		if(!isWait)
 		{
+			//drive
 			drive->drive();
 			drive->shift(oi->joyDrive->GetRawButton(8), oi->joyDrive->GetRawButton(9));
+			//manipulator
 			manip->moveArm(oi->joyManip->GetRawButton(6), oi->joyManip->GetRawButton(7));
 			manip->intakeBall(oi->joyManip->GetRawButton(INTAKE_BUTTON), oi->joyManip->GetRawButton(OUTTAKE_BUTTON), (oi->getManipJoystick()->GetThrottle()+1)/2);
 			catapult->launchBall();

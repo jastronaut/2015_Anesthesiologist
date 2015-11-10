@@ -1,7 +1,6 @@
 #ifndef OPERATOR_INTERFACE_H_
 #define OPERATOR_INTERFACE_H_
 
-
 #include "WPILib.h"
 #include "Macros.h"
 
@@ -16,7 +15,7 @@ public:
 	
 	Joystick *joyDrive;
 	Joystick *joyManip;
-	
+
 private:
 
 	SmartDashboard* dashboard;
