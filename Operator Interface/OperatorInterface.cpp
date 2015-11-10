@@ -2,8 +2,7 @@
 
 OperatorInterface::OperatorInterface()
 {
-	joyDrive = new Joystick(1);
-	joyManip = new Joystick(2);
+	joyDrive = new Joystick(0);
 
 	dashboard->init(); 
 }
