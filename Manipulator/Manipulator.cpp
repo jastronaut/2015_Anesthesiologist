@@ -4,8 +4,6 @@ Manipulator::Manipulator()
 {
 	intakeRoller = new Talon(1, INTAKE_ROLLER_CHANNEL);
 	//intakeSwitch = new DigitalInput(1, INTAKE_SWITCH_CHANNEL);
-	arm = new ManipArm();
-	camera = new ManipCamera();
 	
 	comp599->Start();
 
@@ -49,7 +47,7 @@ void toggleCompressor(bool start)
 	// TODO: make this make sense
 	if(start)
 		count++;
-	
+
 	if(count%2 == 0)
 		comp599->Stop();
 	else

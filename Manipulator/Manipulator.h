@@ -1,9 +1,8 @@
 #ifndef MANIPULATOR_H_
 #define MANIPULATOR_H_
+
 #include "../Macros.h"
 #include "../Operator\ Interface/OperatorInterface.h"
-#include "ManipArm.h"
-#include "ManipCamera.h"
 
 class Manipulator
 {
@@ -22,10 +21,6 @@ public:
 	int step;
 
 private:
-	DoubleSolenoid *intakeArm;
-
-	ManipArm* arm;
-	ManipCamera* camera;
 	OperatorInterface* oi;
 
 	int count;
