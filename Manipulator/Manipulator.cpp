@@ -7,7 +7,10 @@ Manipulator::Manipulator()
 	arm = new ManipArm();
 	camera = new ManipCamera();
 	
+	comp599->Start();
+
 	step = 0;
+	count = 0;
 }
 
 Manipulator::~Manipulator()
@@ -39,4 +42,16 @@ void AnesthesiologistManipulator::intakeBall(bool outtake, bool intake, double s
 			intakeRoller->Set(0, SYNC_STATE_OFF);
 		}
 	}
+}
+
+void toggleCompressor(bool start)
+{
+	// TODO: make this make sense
+	if(start)
+		count++;
+	
+	if(count%2 == 0)
+		comp599->Stop();
+	else
+		comp599->Start();
 }
