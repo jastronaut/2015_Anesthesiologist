@@ -4,7 +4,7 @@ Catapult::Catapult()
 {
 	armManip = new ManipArm();
 	choochooTalon = new CANTalon(Catapult_MOTOR_CHANNEL);	
-	// breakout board  ,talonlllllll
+	// TODO: figure out how to implement pulse control thingy with the cantalon
 	
 	lastPulse = false;
 	launchState = STATE_HOLD;
