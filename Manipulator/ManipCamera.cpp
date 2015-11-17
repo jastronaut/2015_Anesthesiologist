@@ -16,7 +16,7 @@ ManipCamera::ManipCamera()
 }
 
 
-int AnesthesiologistManipulator::getCameraPosition()
+int ManipCamera::getCameraPosition()
 {
 	if(pot->GetVoltage() > POT_UPPER_LIMIT - POT_DEADZONE_HIGH)
 	{
@@ -29,7 +29,7 @@ int AnesthesiologistManipulator::getCameraPosition()
 	return 0;
 }
 
-void AnesthesiologistManipulator::toggleCameraPosition(bool isForward)
+void ManipCamera::toggleCameraPosition(bool isForward)
 {
 	bool isForwardLimit = false;
 	bool isBackLimit = false;
