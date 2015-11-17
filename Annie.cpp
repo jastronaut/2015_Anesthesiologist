@@ -46,7 +46,7 @@ private:
 		if(!isWait)
 		{
 			//drive
-			drive->drive();
+			drive->drive(oi->joyDrive->GetRawAxis(FORWARD_Y_AXIS)), setTurnSpeed(oi->joyDrive->GetRawAxis(TURN_X_AXIS));
 			drive->shift(oi->joyDrive->GetRawButton(8), oi->joyDrive->GetRawButton(9));
 			//manipulator
 			manip->moveArm(oi->joyManip->GetRawButton(6), oi->joyManip->GetRawButton(7));
