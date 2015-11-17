@@ -20,7 +20,7 @@ Manipulator::~Manipulator()
 	//intakeSwitch = NULL;
 }
 
-void AnesthesiologistManipulator::intakeBall(bool outtake, bool intake, double speed)
+void Manipulator::intakeBall(bool outtake, bool intake, double speed)
 {
 	bool lastSwitchHit = false;
 
