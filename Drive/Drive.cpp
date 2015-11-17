@@ -1,27 +1,22 @@
 #include "Drive.h"
 
-AnesthesiologistDrive::AnesthesiologistDrive(AnesthesiologistOperatorInterface *opInt)
+Drive::Drive()
 {
 	//if(opInt) oi = opInt;
-	
-	linearVelocity = 0;
-	turnSpeed = 0;
 	
 	shifter = new DoubleSolenoid(PNEUMATICS_24V_SLOT, SHIFTER_SOLENOID_CHANNEL_A, SHIFTER_SOLENOID_CHANNEL_B);   
 	shifter->Set(DoubleSolenoid::kReverse);
 	
 	frontLeftMotor = new Talon(FRONT_LEFT_MOTOR_CHANNEL);   
 	rearLeftMotor = new Talon(REAR_LEFT_MOTOR_CHANNEL);   
-	frontRightMotor = new Talon(FORNT_RIGHT_MOTOR_CHANNEL); 
+	frontRightMotor = new Talon(FRONT_RIGHT_MOTOR_CHANNEL); 
 	rearRightMotor = new Talon(REAR_RIGHT_MOTOR_CHANNEL);
-
-	oi = new OperatorInterface();
 		
 	timer = new Timer();
 	timer->Start();
 }
 
-AnesthesiologistDrive::~AnesthesiologistDrive()
+Drive::~Drive()
 {
 	delete shifter;
 	delete frontLeftMotor;
@@ -38,7 +33,7 @@ AnesthesiologistDrive::~AnesthesiologistDrive()
 	timer = NULL;
 }
 
-void AnesthesiologistDrive::shift(bool highButton, bool lowButton)
+void Drive::shift(bool highButton, bool lowButton)
 {	
 	if(lowButton)
 		shifter->Set(DoubleSolenoid::kForward);
@@ -46,7 +41,7 @@ void AnesthesiologistDrive::shift(bool highButton, bool lowButton)
 		shifter->Set(DoubleSolenoid::kReverse);
 }
 
-bool AnesthesiologistDrive::getShiftState()
+bool Drive::getShiftState()
 {
 	//iflow gear
 	if(shifter->Get() == DoubleSolenoid::kForward)
@@ -54,7 +49,7 @@ bool AnesthesiologistDrive::getShiftState()
 	return false;
 }
 
-float AnesthesiologistDrive::setLinVelocity(float linVal)
+float Drive::setLinVelocity(float linVal)
 {
 	if(linVal > DEADZONE)
 		return linVal;
@@ -64,7 +59,7 @@ float AnesthesiologistDrive::setLinVelocity(float linVal)
 		return 0; //NEUTRAL
 }
 
-float AnesthesiologistDrive::setTurnSpeed(float turn, bool turboButton)
+float Drive::setTurnSpeed(float turn, bool turboButton)
 {
 	if((turn > DEADZONE && !turboButton) || (turn < -DEADZONE && !turboButton)) 
 		return turn * REDUCTION;
@@ -74,22 +69,22 @@ float AnesthesiologistDrive::setTurnSpeed(float turn, bool turboButton)
 		return turn;
 }
 
-void AnesthesiologistDrive::setLeftMotors(float velocity)
+void Drive::setLeftMotors(float velocity)
 {
 	frontLeftMotor->Set(-velocity);
 	rearLeftMotor->Set(-velocity);
 }
 
-void AnesthesiologistDrive::setRightMotors(float velocity)
+void Drive::setRightMotors(float velocity)
 {
 	frontRightMotor->Set(velocity);
 	rearRightMotor->Set(velocity);
 }
 
-void AnesthesiologistDrive::drive()
+void Drive::drive(float joyY, float joyX)
 {
-	leftCmd = setLinVelocity(oi->joyDrive->GetRawAxis(FORWARD_Y_AXIS)) +  setTurnSpeed(oi->joyDrive->GetRawAxis(TURN_X_AXIS));
-	rightCmd = setLinVelocity(oi->joyDrive->GetRawAxis(FORWARD_Y_AXIS)) - setTurnSpeed(oi->joyDrive->GetRawAxis(TURN_X_AXIS));
+	leftCmd = setLinVelocity(joyY +  joyX);
+	rightCmd = setLinVelocity(joyY - joyX);
 	
 	setLeftMotors(leftCmd);
 	setRightMotors(rightCmd);

@@ -3,11 +3,11 @@
 #include "../Macros.h"
 #include "../Operator\ Interface/OperatorInterface.h"
 
-class AnesthesiologistDrive
+class Drive
 {
 public:
-	AnesthesiologistDrive(AnesthesiologistOperatorInterface *opInt = NULL);
-	~AnesthesiologistDrive();
+	Drive();
+	~Drive();
 	
 	void shift(bool highButton, bool lowButton);
 	bool getShiftState();
@@ -19,7 +19,7 @@ public:
 	void setLeftMotors(double velocity);
 	void setRightMotors(double velocity);
 
-	void drive();
+	void drive(float joyY, float joyX);
 
 	DoubleSolenoid *shifter;
 	Timer *timer;
@@ -32,8 +32,6 @@ private:
 	
 	AnesthesiologistOperatorInterface *oi;
 	
-	float linearVelocity; 
-	float turnSpeed;
 	float leftCmd;
 	float rightCmd;	
 };
