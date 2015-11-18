@@ -2,7 +2,7 @@
 #define OPERATOR_INTERFACE_H_
 
 #include "WPILib.h"
-#include "Macros.h"
+#include "../Macros.h"
 
 class OperatorInterface
 {
